@@ -21,7 +21,7 @@
 세 `.md` 파일을 `~/.claude/agents/`에 두면 모든 프로젝트에서 자연어로 호출된다 (에이전트 이름을 몰라도 description 키워드 매칭으로 라우팅):
 
 ```
-goods-order.service.ts에 테스트 추가해줘          → test-writer (verify)
+order.service.ts에 테스트 추가해줘                → test-writer (verify)
 주문 음수 금액 버그, 회귀 테스트 먼저 짜줘         → test-writer (fail-first)
 auth.service.spec.ts 테스트 충분한지 봐줘         → test-reviewer
 ```
