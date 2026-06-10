@@ -191,7 +191,7 @@ expect(sentEmails).toContainEqual({ to: 'user@x.com', subject: '환영합니다'
 - 실제 피처 진입점(서비스 최상위 메서드 / 피처 workflow)을 import 해서 실행하는 테스트 없음
 - 응답 DTO 의 최종 shape (비어있지 않은 목록, 필드 매핑) 을 단언하는 테스트 없음
 - 생산자→소비자 체인에서 소비자 테스트가 **생산자가 만들어야 할 중간 상태를 직접 seed**
-  (예: 배정 결과인 `isInEvaluation:true`·`currentEvaluatorId` 를 `create()` 로 박고 `completeEvaluation` 만 호출)
+  (예: 배정 결과인 `isAssigned:true`·`assignedReviewerId` 를 `create()` 로 박고 `completeReview` 만 호출)
   → 생산자(배정 루프)가 그 상태를 못 만들어도 GREEN. 시작점만 만들고 실제 서비스 호출로 끝까지 도는
   테스트가 체인당 최소 1개 있는지 확인한다
 
