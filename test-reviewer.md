@@ -165,12 +165,16 @@ expect(sentEmails).toContainEqual({ to: 'user@x.com', subject: '환영합니다'
 
 ### Full-Workflow 해피 패스 미검증 (orchestration layer 공백)
 
-피처가 여러 step 을 조합하는 workflow 기반인데 테스트가 **step 래퍼로 일부만 실행**하고 있으면 지적 대상.
+피처가 여러 단계를 조합하는 흐름(workflow 엔진이든 서비스 메서드 체인이든)인데 테스트가 **일부 단계만 실행**하거나 **중간 상태를 직접 seed 해서 이음새(seam)를 건너뛰면** 지적 대상.
 
 관찰 패턴:
 - `createWorkflow("test-..-wf", (input) => new WorkflowResponse(someStep(input)))` 식 **테스트 전용 래퍼**를 통해 특정 step 만 테스트
 - 실제 피처 workflow (예: `getXxxWorkflow`) 를 import 해서 실행하는 테스트 없음
 - 응답 DTO 의 최종 shape (비어있지 않은 products/items, 필드 매핑) 을 단언하는 테스트 없음
+- 생산자→소비자 체인에서 소비자 테스트가 **생산자가 만들어야 할 중간 상태를 직접 seed**
+  (예: 배정 결과인 `isInEvaluation:true`·`currentEvaluatorId` 를 `create()` 로 박고 `completeEvaluation` 만 호출)
+  → 생산자(배정 루프)가 그 상태를 못 만들어도 GREEN. 시작점만 만들고 실제 서비스 호출로 끝까지 도는
+  테스트가 체인당 최소 1개 있는지 확인한다
 
 위험:
 - Step 단위는 통과해도 workflow 수준의 `transform` / orchestration / DTO 매핑 버그가 통과
