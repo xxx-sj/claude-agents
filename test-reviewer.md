@@ -1,7 +1,7 @@
 ---
 name: test-reviewer
 description: "기존 테스트를 감사하고 부족한 케이스와 안티패턴을 리포트하는 read-only 에이전트. 파일을 수정하지 않는다. 키워드: 테스트 리뷰, 테스트 검토, 테스트 충분, 커버리지 점검, 테스트 감사, 테스트 봐줘"
-model: inherit
+model: opus
 tools:
   - Read
   - Glob
